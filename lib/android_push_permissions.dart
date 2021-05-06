@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 
 class AndroidPushPermissions {
+  int? aNullableInt = null;
   static const MethodChannel _channel =
       const MethodChannel('android_push_permissions');
 

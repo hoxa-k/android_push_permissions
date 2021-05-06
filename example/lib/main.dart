@@ -14,7 +14,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool _pushEnabled = false;
+  bool? _pushEnabled;
 
   @override
   void initState() {
@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    bool isPushEnabled;
+    bool? isPushEnabled = false;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       isPushEnabled = await AndroidPushPermissions.isEnabled();
@@ -32,9 +32,6 @@ class _MyAppState extends State<MyApp> {
       print('Failed to get push restrictions');
     }
 
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
     if (!mounted) return;
 
     setState(() {
@@ -50,7 +47,7 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Push is enabled: $_pushEnabled\n'),
+          child: Text('Push is enabled: ${_pushEnabled ?? 'Failed to get push restrictions'}\n'),
         ),
       ),
     );
