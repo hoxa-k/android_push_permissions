@@ -22,10 +22,8 @@ class _MyAppState extends State<MyApp> {
     initPlatformState();
   }
 
-  // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
     bool? isPushEnabled = false;
-    // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       isPushEnabled = await AndroidPushPermissions.isEnabled();
     } on PlatformException {
@@ -47,7 +45,8 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Push is enabled: ${_pushEnabled ?? 'Failed to get push restrictions'}\n'),
+          child: Text(
+              'Push is enabled: ${_pushEnabled ?? 'Failed to get push restrictions'}\n'),
         ),
       ),
     );
