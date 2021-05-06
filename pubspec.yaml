@@ -1,12 +1,11 @@
 name: android_push_permissions
 description: Flutter project to check android notification permissions
-version: 0.0.1
+version: 1.0.0
 author:
 homepage:
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
-  flutter: ">=1.20.0"
 
 dependencies:
   flutter:
@@ -15,6 +14,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  pedantic: ^1.11.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
