@@ -26,18 +26,18 @@ public class AndroidPushPermissionsPlugin implements FlutterPlugin, MethodCallHa
     @Override
     public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
         if (call.method.equals("isEnabled")) {
-            result.success(getNotificationPermission(context, call.<String>argument("channelId")));
+            result.success(getNotificationPermission(context, call.<String>argument("channelId"), call.<String>argument("isBadge")));
         } else {
             result.notImplemented();
         }
     }
 
-    private boolean getNotificationPermission(Context context, String channelId) {
+    private boolean getNotificationPermission(Context context, String channelId, Boolean isBadge) {
         if (NotificationManagerCompat.from(context).areNotificationsEnabled()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && channelId != null) {
                 NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
                 NotificationChannel channel = manager.getNotificationChannel(channelId);
-                channel.setShowBadge(false);
+                channel.setShowBadge(isBadge);
                 return channel.getImportance() != NotificationManager.IMPORTANCE_NONE;
             } else {
                 return true;
