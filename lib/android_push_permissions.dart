@@ -7,7 +7,7 @@ class AndroidPushPermissions {
       MethodChannel('android_push_permissions');
 
   static Future<bool?> isEnabled(
-      {required bool isBadge, String? channelId}) async {
+      {bool isBadge = false, String? channelId}) async {
     final result =
         await _channel.invokeMethod<bool>('isEnabled', <String, dynamic>{
       'channelId': channelId,
