@@ -11,6 +11,7 @@ import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
+import me.leolin.shortcutbadger.ShortcutBadger;
 
 public class AndroidPushPermissionsPlugin implements FlutterPlugin, MethodCallHandler {
     private MethodChannel channel;
