@@ -4,10 +4,8 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
-
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationManagerCompat;
-
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
@@ -37,15 +35,9 @@ public class AndroidPushPermissionsPlugin implements FlutterPlugin, MethodCallHa
     private boolean getNotificationPermission(Context context, String channelId, Boolean isBadge) {
         if (NotificationManagerCompat.from(context).areNotificationsEnabled()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//                NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-//                NotificationChannel channel = new NotificationChannel(channelId);
-//                channel.setShowBadge(false);
-//
-//                notificationManager.createNotificationChannel(channel);
                 NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
                 NotificationChannel channel = manager.getNotificationChannel(channelId);
                 channel.setShowBadge(isBadge);
-                manager.createNotificationChannel(channel);
                 return channel.getImportance() != NotificationManager.IMPORTANCE_NONE;
             } else {
                 return true;
