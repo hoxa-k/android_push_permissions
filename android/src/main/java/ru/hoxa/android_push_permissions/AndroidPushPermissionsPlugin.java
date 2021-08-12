@@ -11,7 +11,6 @@ import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
-import me.leolin.shortcutbadger.ShortcutBadger;
 
 public class AndroidPushPermissionsPlugin implements FlutterPlugin, MethodCallHandler {
     private MethodChannel channel;
@@ -40,7 +39,6 @@ public class AndroidPushPermissionsPlugin implements FlutterPlugin, MethodCallHa
                 NotificationChannel channel = manager.getNotificationChannel(channelId);
                 channel.setShowBadge(isBadge);
                 manager.createNotificationChannel(channel);
-                ShortcutBadger.removeCount(context);
                 return channel.getImportance() != NotificationManager.IMPORTANCE_NONE;
             } else {
                 return true;
